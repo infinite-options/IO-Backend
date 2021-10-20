@@ -596,12 +596,12 @@ class SendEmail(Resource):
             # print(token)
             # password = items['result'][0]['password_hashed']
             # print(password)
-            msg = Message("Email Verification", sender='support@mealsfor.me', recipients=[email])
+            msg = Message("Thanks for your Email!", sender='info@infiniteoptions.com', recipients=[email])
             # msg = Message("Test email", sender='support@mealsfor.me', recipients=["pmarathay@gmail.com"]) 
             msg.body = "Hi !\n\n"\
             "We are looking forward to meeting with you! \n"\
-            "Email support@servingfresh.me if you run into any problems or have any questions.\n" \
-            "Thx - The Serving Fresh Team\n\n" 
+            "Email info@infiniteoption.com if you need to get in touch with us directly.\n" \
+            "Thx - Infinite Options\n\n" 
             # print('msg-bd----', msg.body) 
             # print('msg-') 
             mail.send(msg)
