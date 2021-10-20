@@ -115,7 +115,7 @@ app.config["MAIL_DEFAULT_SENDER"] = os.environ.get("SUPPORT_EMAIL")
 
 # Use locally defined Username and Password to test via localhost and Postman
 app.config['MAIL_USERNAME'] = 'info@infiniteoptions.com'
-app.config['MAIL_PASSWORD'] = 'IOinfo1!'
+app.config['MAIL_PASSWORD'] = '<enter password here>'
 app.config['MAIL_DEFAULT_SENDER'] = 'info@infiniteoptions.com'
 
 
@@ -596,10 +596,10 @@ class SendEmail(Resource):
             "We are looking forward to meeting with you! \n"\
             "Email info@infiniteoption.com if you need to get in touch with us directly.\n" \
             "Thx - Infinite Options\n\n" 
-            print('msg-bd----', msg.body) 
+            # print('msg-bd----', msg.body) 
             mail.send(msg)
 
-            print("first email sent")
+            # print("first email sent")
             # Send email to Host
             msg = Message("New Email from Website!", sender='info@infiniteoptions.com', recipients=["pmarathay@gmail.com"])
             msg.body = "Hi !\n\n"\
@@ -611,22 +611,9 @@ class SendEmail(Resource):
             "Subject:   " + subject + "\n"\
 
             "Thx - Infinite Options\n\n" 
-            print('msg-bd----', msg.body) 
+            # print('msg-bd----', msg.body) 
             mail.send(msg)
 
-
-            # Previous notes that may be useful
-            # msg = Message("Email Verification", sender='support@mealsfor.me', recipients=[email])
-
-            # print('MESSAGE----', msg)
-            # print('message complete')
-            # # print("1")
-            # link = url_for('confirm', token=token, hashed=password, _external=True)
-            # # print("2")
-            # print('link---', link)
-            # msg.body = "Click on the link {} to verify your email address.".format(link)
-            # print('msg-bd----', msg.body)
-            # mail.send(msg)
             return "Email Sent", 200
 
         except:
@@ -643,27 +630,7 @@ class SendEmail(Resource):
             data = request.get_json(force=True)
             # print(data)
             email = data['email']
-            # query = """
-            #         SELECT password_hashed
-            #         FROM M4ME.customers c
-            #         WHERE customer_email = \'""" + email + """\'
-            #         """
-            # items = execute(query, 'get', conn)
-            # print(items)
-            # if not items['result']:
 
-            #     items['message'] = "Customer email doesn't exists"
-            #     items['code'] = 404
-            #     return items
-            # if items['result'][0]['password_hashed'] == '':
-            #     items['message'] = "Customer password doesn't exists"
-            #     items['code'] = 405
-            #     return items
-
-            # token = s.dumps(email)
-            # print(token)
-            # password = items['result'][0]['password_hashed']
-            # print(password)
             msg = Message("Thanks for your Email!", sender='info@infiniteoptions.com', recipients=[email])
             # msg = Message("Test email", sender='support@mealsfor.me', recipients=["pmarathay@gmail.com"]) 
             msg.body = "Hi !\n\n"\
@@ -671,19 +638,8 @@ class SendEmail(Resource):
             "Email info@infiniteoption.com if you need to get in touch with us directly.\n" \
             "Thx - Infinite Options\n\n" 
             # print('msg-bd----', msg.body) 
-            # print('msg-') 
             mail.send(msg)
-            # msg = Message("Email Verification", sender='support@mealsfor.me', recipients=[email])
 
-            # print('MESSAGE----', msg)
-            # print('message complete')
-            # # print("1")
-            # link = url_for('confirm', token=token, hashed=password, _external=True)
-            # # print("2")
-            # print('link---', link)
-            # msg.body = "Click on the link {} to verify your email address.".format(link)
-            # print('msg-bd----', msg.body)
-            # mail.send(msg)
             return "Email Sent", 200
 
         except:
