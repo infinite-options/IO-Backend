@@ -107,10 +107,16 @@ stripe.api_key = stripe_secret_test_key
 CORS(app)
 
 # --------------- Mail Variables ------------------
-app.config["MAIL_USERNAME"] = os.environ.get("EMAIL")
-app.config["MAIL_PASSWORD"] = os.environ.get("PASSWORD")
-# app.config['MAIL_USERNAME'] = ''
-# app.config['MAIL_PASSWORD'] = ''
+# Mail username and password loaded in zappa_settings.json file
+app.config["MAIL_USERNAME"] = os.environ.get("SUPPORT_EMAIL")
+app.config["MAIL_PASSWORD"] = os.environ.get("SUPPORT_PASSWORD")
+app.config["MAIL_DEFAULT_SENDER"] = os.environ.get("SUPPORT_EMAIL")
+
+# Use locally defined Username and Password to test via localhost and Postman
+# app.config['MAIL_USERNAME'] = 'info@infiniteoptions.com'
+# app.config['MAIL_PASSWORD'] = '<enter password here>'
+# app.config['MAIL_DEFAULT_SENDER'] = 'info@infiniteoptions.com'
+
 
 # Setting for mydomain.com
 app.config["MAIL_SERVER"] = "smtp.mydomain.com"
@@ -119,10 +125,6 @@ app.config["MAIL_PORT"] = 465
 # Setting for gmail
 # app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 # app.config['MAIL_PORT'] = 465
-
-app.config['MAIL_USERNAME'] = 'support@manifestmy.space'
-app.config['MAIL_PASSWORD'] = 'Support4MySpace'
-app.config['MAIL_DEFAULT_SENDER'] = 'support@manifestmy.space'
 
 
 app.config["MAIL_USE_TLS"] = False
