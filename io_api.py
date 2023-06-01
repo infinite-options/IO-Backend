@@ -114,9 +114,9 @@ app.config["MAIL_PASSWORD"] = os.environ.get("SUPPORT_PASSWORD")
 app.config["MAIL_DEFAULT_SENDER"] = os.environ.get("SUPPORT_EMAIL")
 
 # Use locally defined Username and Password to test via localhost and Postman
-app.config['MAIL_USERNAME'] = 'info@infiniteoptions.com'
-app.config['MAIL_PASSWORD'] = '<enter password here>'
-app.config['MAIL_DEFAULT_SENDER'] = 'info@infiniteoptions.com'
+# app.config['MAIL_USERNAME'] = 'info@infiniteoptions.com'
+# app.config['MAIL_PASSWORD'] = '<enter password here>'
+# app.config['MAIL_DEFAULT_SENDER'] = 'info@infiniteoptions.com'
 
 
 # Setting for mydomain.com
@@ -589,6 +589,7 @@ class SendEmail(Resource):
         try:
             conn = connect()
 
+            print(name, email, phone, subject)
             # Send email to Client
             msg = Message("Thanks for your Email!", sender='info@infiniteoptions.com', recipients=[email])
             # msg = Message("Test email", sender='support@mealsfor.me', recipients=["pmarathay@gmail.com"]) 
@@ -596,10 +597,11 @@ class SendEmail(Resource):
             "We are looking forward to meeting with you! \n"\
             "Email info@infiniteoption.com if you need to get in touch with us directly.\n" \
             "Thx - Infinite Options\n\n" 
-            # print('msg-bd----', msg.body) 
+            print('msg-bd----', msg.body)
+            print("This is the msg:", msg) 
             mail.send(msg)
 
-            # print("first email sent")
+            print("first email sent")
             # Send email to Host
             msg = Message("New Email from Website!", sender='info@infiniteoptions.com', recipients=["pmarathay@gmail.com"])
             msg.body = "Hi !\n\n"\
@@ -611,7 +613,7 @@ class SendEmail(Resource):
             "Subject:   " + subject + "\n"\
 
             "Thx - Infinite Options\n\n" 
-            # print('msg-bd----', msg.body) 
+            print('msg-bd----', msg.body) 
             mail.send(msg)
 
             return "Email Sent", 200
